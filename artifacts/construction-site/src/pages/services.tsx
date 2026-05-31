@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowRight, Home, Building2, Hammer, Palette, ClipboardList, Wrench } from "lucide-react";
-import { useListServices } from "@workspace/api-client-react";
+import { mockServices } from "@/lib/data";
 import { fadeUp } from "@/lib/animations";
 
 const iconMap: Record<string, React.FC<{ className?: string }>> = {
@@ -21,7 +21,8 @@ const reasons = [
 ];
 
 export default function Services() {
-  const { data: services, isLoading } = useListServices();
+  const services = mockServices;
+  const isLoading = false;
 
   return (
     <div>

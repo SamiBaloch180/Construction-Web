@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowRight, Star, Quote, HardHat, Layers, Drill } from "lucide-react";
-import { useGetStats, useListServices, useListProjects, useListTestimonials } from "@workspace/api-client-react";
+import { mockStats, mockServices, mockProjects, mockTestimonials } from "@/lib/data";
 import heroBg from "@/assets/hero-bg.png";
 import projectRes1 from "@/assets/project-res-1.png";
 import projectCom1 from "@/assets/project-com-1.png";
@@ -24,13 +24,13 @@ const projectImages: Record<number, string> = {
 };
 
 export default function Home() {
-  const { data: stats } = useGetStats();
-  const { data: services } = useListServices();
-  const { data: projects } = useListProjects({ category: undefined });
-  const { data: testimonials } = useListTestimonials();
+  const stats = mockStats;
+  const services = mockServices;
+  const projects = mockProjects;
+  const testimonials = mockTestimonials;
 
-  const featuredProjects = projects?.filter((p) => p.featured).slice(0, 3) ?? [];
-  const featuredServices = services?.filter((s) => s.featured).slice(0, 3) ?? [];
+  const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
+  const featuredServices = services.filter((s) => s.featured).slice(0, 3);
 
   return (
     <div>
@@ -128,10 +128,10 @@ export default function Home() {
         <div className="max-w-screen-xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4">
             {[
-              { label: "Years Experience", value: stats?.yearsExperience ?? "25", suffix: "+" },
-              { label: "Projects Completed", value: stats?.projectsCompleted ?? "847", suffix: "+" },
-              { label: "Team Members", value: stats?.teamSize ?? "120", suffix: "+" },
-              { label: "Countries Served", value: stats?.countriesServed ?? "12", suffix: "" },
+              { label: "Years Experience", value: stats.yearsExperience ?? "25", suffix: "+" },
+              { label: "Projects Completed", value: stats.projectsCompleted ?? "847", suffix: "+" },
+              { label: "Team Members", value: stats.teamSize ?? "120", suffix: "+" },
+              { label: "Countries Served", value: stats.countriesServed ?? "12", suffix: "" },
             ].map((s, i) => (
               <motion.div
                 key={s.label}

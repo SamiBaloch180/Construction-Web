@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useSubmitContact } from "@workspace/api-client-react";
+
 
 const contactInfo = [
   {
@@ -52,7 +52,7 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  const mutation = useSubmitContact();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -63,21 +63,11 @@ export default function Contact() {
       return;
     }
 
-    mutation.mutate(
-      {
-        data: {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone || undefined,
-          projectType: formData.projectType || undefined,
-          message: formData.message,
-        },
-      },
-      {
-        onSuccess: () => setSubmitted(true),
-        onError: () => setErrorMsg("Something went wrong. Please try again."),
-      }
-    );
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitted(true);
+    }, 1000);
   };
 
   return (
@@ -241,10 +231,10 @@ export default function Contact() {
 
                   <button
                     type="submit"
-                    disabled={mutation.isPending}
+                    disabled={isSubmitting}
                     className="w-full bg-primary text-primary-foreground font-display font-black text-sm uppercase tracking-[0.2em] py-4 hover:bg-primary/90 transition-colors disabled:opacity-60"
                   >
-                    {mutation.isPending ? "Sending..." : "Submit Project Inquiry"}
+                    {isSubmitting ? "Sending..." : "Submit Project Inquiry"}
                   </button>
                 </form>
               )}

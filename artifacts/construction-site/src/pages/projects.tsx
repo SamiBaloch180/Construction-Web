@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, MapPin, Calendar, Tag } from "lucide-react";
-import { useListProjects } from "@workspace/api-client-react";
+import { mockProjects } from "@/lib/data";
 import projectRes1 from "@/assets/project-res-1.png";
 import projectRes2 from "@/assets/project-res-2.png";
 import projectCom1 from "@/assets/project-com-1.png";
@@ -86,9 +86,10 @@ export default function Projects() {
   const [activeCategory, setActiveCategory] = useState<Category>("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const categories: Category[] = ["All", "Residential", "Commercial", "Industrial"];
-  const { data: allProjects, isLoading } = useListProjects({});
+  const allProjects = mockProjects;
+  const isLoading = false;
 
-  const filtered = (allProjects ?? []).filter(
+  const filtered = allProjects.filter(
     (p) => activeCategory === "All" || p.category === activeCategory
   );
 

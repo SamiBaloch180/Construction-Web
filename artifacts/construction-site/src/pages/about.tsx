@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowRight, Shield, Clock, Award, Users } from "lucide-react";
-import { useListTeam } from "@workspace/api-client-react";
+import { mockTeam } from "@/lib/data";
 import team1 from "@/assets/team-1.png";
 import team2 from "@/assets/team-2.png";
 import team3 from "@/assets/team-3.png";
@@ -17,7 +17,8 @@ const values = [
 ];
 
 export default function About() {
-  const { data: team, isLoading } = useListTeam();
+  const team = mockTeam;
+  const isLoading = false;
 
   return (
     <div>
