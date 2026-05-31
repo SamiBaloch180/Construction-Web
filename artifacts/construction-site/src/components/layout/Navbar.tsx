@@ -37,18 +37,16 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled || isMobileMenuOpen
-          ? "bg-[#0d0d0d] border-b border-white/10"
-          : "bg-transparent border-b border-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || isMobileMenuOpen
+        ? "bg-[#0d0d0d] border-b border-white/10"
+        : "bg-transparent border-b border-transparent"
+        }`}
     >
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-[72px] flex items-center justify-between gap-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
-          <div className="w-9 h-9 bg-primary flex items-center justify-center font-display font-black text-primary-foreground text-lg leading-none select-none">
-            B
-          </div>
+
+          <img className="h-9 w-auto object-contain" src="/logo.png" alt="IronCraft Logo" />
           <span className="text-white font-display font-black text-xl tracking-widest uppercase leading-none">
             IRON<span className="text-white/50">/</span>CRAFT
           </span>
@@ -60,9 +58,8 @@ export function Navbar() {
             <Link
               key={link.path}
               href={link.path}
-              className={`text-xs font-bold uppercase tracking-[0.15em] transition-colors hover:text-primary ${
-                isActive(link.path) ? "text-primary" : "text-white/70"
-              }`}
+              className={`text-xs font-bold uppercase tracking-[0.15em] transition-colors hover:text-primary ${isActive(link.path) ? "text-primary" : "text-white/70"
+                }`}
             >
               {link.name}
             </Link>
@@ -97,9 +94,8 @@ export function Navbar() {
               <Link
                 key={link.path}
                 href={link.path}
-                className={`text-base font-display font-bold uppercase tracking-wider py-3 px-2 border-b border-white/10 last:border-b-0 transition-colors ${
-                  isActive(link.path) ? "text-primary" : "text-white/70 hover:text-primary"
-                }`}
+                className={`text-base font-display font-bold uppercase tracking-wider py-3 px-2 border-b border-white/10 last:border-b-0 transition-colors ${isActive(link.path) ? "text-primary" : "text-white/70 hover:text-primary"
+                  }`}
               >
                 {link.name}
               </Link>
