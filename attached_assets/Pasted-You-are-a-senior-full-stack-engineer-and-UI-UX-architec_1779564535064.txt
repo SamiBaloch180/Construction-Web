@@ -1,0 +1,184 @@
+You are a senior full-stack engineer and UI/UX architect. Build a complete, 
+production-ready Construction Company Website using the following stack and 
+requirements.
+
+─────────────────────────────────────────────
+TECH STACK
+─────────────────────────────────────────────
+Frontend:
+  - React 18 + TypeScript
+  - Vite (bundler)
+  - Redux Toolkit (global state)
+  - React Router v6 (routing)
+  - Tailwind CSS (styling)
+  - Framer Motion (animations)
+  - Axios (HTTP client)
+
+Backend:
+  - Node.js + Express.js
+  - TypeScript
+  - REST API
+  - CORS, Helmet, dotenv
+  - Nodemailer (contact form emails)
+
+─────────────────────────────────────────────
+FILE ARCHITECTURE
+─────────────────────────────────────────────
+construction-website/
+├── client/                          # React + Vite frontend
+│   ├── public/
+│   ├── src/
+│   │   ├── assets/                  # images, fonts, icons
+│   │   ├── components/
+│   │   │   ├── common/              # Button, Card, Modal, Loader
+│   │   │   ├── layout/              # Navbar, Footer, Sidebar
+│   │   │   └── sections/            # Hero, Services, Projects, etc.
+│   │   ├── features/                # Redux slices (contactSlice, projectSlice)
+│   │   ├── hooks/                   # Custom React hooks
+│   │   ├── pages/                   # Home, About, Services, Projects, Contact
+│   │   ├── routes/                  # App router config
+│   │   ├── services/                # Axios API service calls
+│   │   ├── store/                   # Redux store setup
+│   │   ├── types/                   # TypeScript interfaces & types
+│   │   ├── utils/                   # Helper functions
+│   │   ├── App.tsx
+│   │   └── main.tsx
+│   ├── index.html
+│   ├── vite.config.ts
+│   ├── tailwind.config.ts
+│   └── tsconfig.json
+│
+├── server/                          # Express.js backend
+│   ├── src/
+│   │   ├── config/                  # App config, env setup
+│   │   ├── controllers/             # Route handlers
+│   │   ├── middleware/              # Error handler, auth, validation
+│   │   ├── models/                  # Data models / mock DB
+│   │   ├── routes/                  # API route definitions
+│   │   ├── services/                # Business logic
+│   │   ├── types/                   # Shared TS types
+│   │   ├── utils/                   # Logger, helpers
+│   │   └── index.ts                 # Entry point
+│   ├── package.json
+│   └── tsconfig.json
+│
+├── .env.example
+├── .gitignore
+├── docker-compose.yml               # Deployment ready
+└── README.md
+
+─────────────────────────────────────────────
+PAGES & FEATURES
+─────────────────────────────────────────────
+1. Home Page
+   - Full-screen hero with CTA ("Get a Free Quote")
+   - Stats bar: years of experience, projects completed, team size, countries
+   - Featured services (3–4 cards)
+   - Featured projects (3 cards with overlay)
+   - Testimonials carousel
+   - Call-to-action banner
+
+2. About Page
+   - Company story + mission statement
+   - Core values section (grid icons)
+   - Team members section
+   - Certifications / Awards
+
+3. Services Page
+   - Service cards grid:
+     · Residential Construction
+     · Commercial Construction
+     · Renovation & Remodeling
+     · Interior Design
+     · Project Management
+     · Structural Engineering
+   - Each service: icon, title, short description, "Learn More" button
+
+4. Projects Page
+   - Filterable portfolio grid (by category: Residential / Commercial / Industrial)
+   - Each project card: image, title, category badge, location, year
+   - Project detail modal or page
+
+5. Contact Page
+   - Contact form (name, email, phone, project type, message)
+   - Form handled by Redux + Axios → Express API → Nodemailer
+   - Embedded Google Maps placeholder
+   - Contact info cards (address, phone, email)
+
+6. Global Components
+   - Sticky responsive Navbar with mobile hamburger menu
+   - Footer with links, social icons, newsletter signup
+   - Scroll-to-top button
+   - Loading spinner
+   - 404 Not Found page
+
+─────────────────────────────────────────────
+DESIGN SYSTEM
+─────────────────────────────────────────────
+Aesthetic: Industrial & Authoritative
+  - Primary: #F5A623 (construction amber/orange)
+  - Dark: #1A1A1A (near-black)
+  - Neutral: #F5F5F0 (off-white concrete tone)
+  - Accent: #D9534F (warning red for CTAs)
+  - Font pairing: "Barlow Condensed" (headings) + "Inter" (body)
+  - Heavy use of bold typography, strong grid lines, sharp geometry
+  - Subtle concrete texture on hero and section backgrounds
+  - Smooth scroll animations using Framer Motion (stagger reveals)
+
+─────────────────────────────────────────────
+BACKEND API ENDPOINTS
+─────────────────────────────────────────────
+GET    /api/projects          → list all projects
+GET    /api/projects/:id      → single project
+GET    /api/services          → list all services
+POST   /api/contact           → submit contact form (sends email)
+GET    /api/stats             → company stats (years, projects, etc.)
+
+─────────────────────────────────────────────
+STATE MANAGEMENT (Redux Toolkit)
+─────────────────────────────────────────────
+Slices:
+  - projectsSlice   → fetchProjects, filter by category, selectedProject
+  - servicesSlice   → fetchServices
+  - contactSlice    → form state, loading, success, error
+  - uiSlice         → mobileMenu open/close, scrolled state
+
+─────────────────────────────────────────────
+DEPLOYMENT READY REQUIREMENTS
+─────────────────────────────────────────────
+- .env.example with all required variables
+- Vite proxy config for local dev (client → server)
+- Production build script: `vite build`
+- Express serves static files from dist/ in production
+- docker-compose.yml with client + server services
+- Error boundaries in React
+- Global error handling middleware in Express
+- Input validation on all API routes
+- Security: Helmet, CORS config, rate limiting on /api/contact
+- All TypeScript strictly typed — no `any`
+- ESLint + Prettier config included
+
+─────────────────────────────────────────────
+CODE QUALITY RULES
+─────────────────────────────────────────────
+- No inline styles — all Tailwind utility classes
+- All components are functional with typed props interfaces
+- Custom hooks for data fetching (useProjects, useContact, etc.)
+- Services layer abstracts all API calls — no fetch/axios in components
+- Consistent naming: PascalCase components, camelCase hooks/utils
+- Barrel exports (index.ts) in each feature folder
+- README with setup, run, build, and deploy instructions
+
+─────────────────────────────────────────────
+DELIVERABLE
+─────────────────────────────────────────────
+Generate the complete codebase file by file, starting with:
+1. Project structure overview
+2. Root config files (package.json, tsconfig, vite.config, tailwind.config)
+3. Redux store + all slices
+4. All backend routes, controllers, and services
+5. All React pages and components
+6. docker-compose.yml and .env.example
+
+Make the code clean, scalable, and ready to deploy on Vercel (frontend) 
++ Railway or Render (backend), or together via Docker.
